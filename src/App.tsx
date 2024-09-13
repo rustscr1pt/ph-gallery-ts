@@ -1,26 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './app.style.sass'
+import main_screenComponent from "./screens/main_screen/main_screen.component";
+import {useAppSelector} from "./react-redux/hooks";
+import ScreenType from "./structs/enums";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  let screen_type = useAppSelector((state) => state.screen_type.value);
+
+  if (screen_type === ScreenType.Selector) {
+    return <div className="app-styler">{main_screenComponent({margin : "5%"})}</div>
+  }
+  else {
+    return null
+  }
 }
 
 export default App;
