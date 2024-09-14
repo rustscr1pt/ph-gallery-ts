@@ -9,9 +9,9 @@ interface Props extends React.PropsWithChildren {
 
 const ImagesRow = (props : Props) => {
     return <div style={{width : props.row_width, margin : props.margin}} className="images-row">
-        {image_viewComponent({width : "20%"})}
-        {image_viewComponent({width : "20%"})}
-        {image_viewComponent({width : "20%"})}
+        {image_viewComponent({width : "20%", image_source : "/images/image.png"})}
+        {image_viewComponent({width : "20%", image_source : "/images/image.png"})}
+        {image_viewComponent({width : "20%", image_source : "/images/image.png"})}
     </div>
 }
 
