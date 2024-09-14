@@ -5,7 +5,7 @@ import type { RootState } from "../../mainStorage";
 export const screen_type = createSlice({
     name : "screen_type",
     initialState : {
-        value : ScreenType.Selector
+        value : ScreenType.FullView
     },
     reducers : {
         changeScreenType(state) {

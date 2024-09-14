@@ -1,10 +1,12 @@
-import React from "react";
+import React, {RefObject} from "react";
 import './ArrayButton.style.sass';
+
 interface Props extends React.PropsWithChildren {
     grid_columns : string,
     grid_rows : string
     width : string,
-    source_image : string
+    source_image : string,
+    reference : RefObject<HTMLImageElement>
 }
 
 
@@ -20,11 +22,13 @@ const ArrayButton = (props : Props) => {
         }
         className="array-button-div"
     >
-        <img style={
-            {
-                width: "80%",
-            }
-        } src={props.source_image}></img>
+        <img
+            ref={props.reference}
+            style={{
+                width: "50%",
+            }}
+            src={props.source_image}>
+        </img>
     </div>
 }
 
