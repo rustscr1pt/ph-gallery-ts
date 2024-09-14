@@ -1,17 +1,18 @@
 import './app.style.sass'
-import main_screenComponent from "./screens/main_screen/main_screen.component";
 import {useAppSelector} from "./react-redux/hooks";
 import ScreenType from "./structs/enums";
+import main_screenComponent from "./screens/MainScreen/MainScreen.component";
 
 function App() {
-  let screen_type = useAppSelector((state) => state.screen_type.value);
+  let screen_type : ScreenType = useAppSelector((state) => state.screen_type.value);
 
-  if (screen_type === ScreenType.Selector) {
-    return <div className="app-styler">{main_screenComponent({margin : "5%"})}</div>
-  }
-  else {
-    return null
-  }
+  return <div className="app-styler">
+    {
+      screen_type === ScreenType.Selector
+          ? main_screenComponent({margin: "5%"})
+          : null
+    }
+  </div>
 }
 
 export default App;

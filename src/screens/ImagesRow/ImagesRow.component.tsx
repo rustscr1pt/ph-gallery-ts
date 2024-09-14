@@ -1,13 +1,13 @@
-import './images_row.style.sass';
+import './ImagesRow.style.sass';
 import React from "react";
-import image_viewComponent from "../../components/image_view/image_view.component";
+import image_viewComponent from "../../components/ImageView/ImageView.component";
 
 interface Props extends React.PropsWithChildren {
     row_width : string,
     margin : string,
 }
 
-const images_row = (props : Props) => {
+const ImagesRow = (props : Props) => {
     return <div style={{width : props.row_width, margin : props.margin}} className="images-row">
         {image_viewComponent({width : "20%"})}
         {image_viewComponent({width : "20%"})}
@@ -15,4 +15,4 @@ const images_row = (props : Props) => {
     </div>
 }
 
-export default images_row;
+export default ImagesRow;
