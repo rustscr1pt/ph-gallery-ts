@@ -28,7 +28,7 @@ const PanoramicImage = (props : Props) => {
                 opacity: 0
             })
 
-    })
+    }, [])
 
     return <div
         ref={div_ref}
@@ -36,28 +36,20 @@ const PanoramicImage = (props : Props) => {
             backgroundImage : `url("${props.background_image}")`
         }}
         className="panoramic-image">
-        {
-            ArrayButton(
-                {
-                    grid_columns : "1 / 2",
-                    grid_rows : "3 / 4",
-                    width : "100%",
-                    source_image : "/images/arrow-circle-left.svg",
-                    reference : left_img_ref
-                }
-            )
-        }
-        {
-            ArrayButton(
-                {
-                    grid_columns : "4 / 5",
-                    grid_rows : "3 / 4",
-                    width : "100%",
-                    source_image : "/images/arrow-circle-right.svg",
-                    reference : right_img_ref
-                }
-            )
-        }
+        <ArrayButton
+            grid_columns={"1 / 2"}
+            grid_rows={"3 / 4"}
+            width={"100%"}
+            source_image={"/images/arrow-circle-left.svg"}
+            reference={left_img_ref}
+        />
+        <ArrayButton
+            grid_columns={"4 / 5"}
+            grid_rows={"3 / 4"}
+            width={"100%"}
+            source_image={"/images/arrow-circle-right.svg"}
+            reference={right_img_ref}
+        />
     </div>
 }
 
