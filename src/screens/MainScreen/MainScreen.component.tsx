@@ -8,9 +8,9 @@ interface Props extends React.PropsWithChildren {
 
 const MainScreen = (props : Props) => {
     return <div className="main-screen" style={{margin : props.margin}}>
-        {ImagesRow({row_width : "100%", margin : "0% 0 0 0"})}
-        {ImagesRow({row_width : "100%", margin : "5% 0 0 0"})}
-        {ImagesRow({row_width : "100%", margin : "5% 0 0 0"})}
+        <ImagesRow row_width={"100%"} margin={"0% 0 0 0"}/>
+        <ImagesRow row_width={"100%"} margin={"5% 0 0 0"}/>
+        <ImagesRow row_width={"100%"} margin={"5% 0 0 0"}/>
     </div>
 }
 
