@@ -1,6 +1,6 @@
 import "./MainScreen.style.sass"
 import ImagesRow from "../ImagesRow/ImagesRow.component";
-import React, {useRef} from "react";
+import React from "react";
 import {useAppSelector} from "../../react-redux/hooks";
 import imagesForRows from "./ImagesForRows.function";
 import {useGSAP} from "@gsap/react";
@@ -13,15 +13,15 @@ interface Props extends React.PropsWithChildren {
 const MainScreen = (props : Props) => {
     let images_buffer : string[][] = imagesForRows(useAppSelector((state) => state.image_storage.value));
 
-    const mainscreen_ref = useRef<HTMLDivElement>(null);
-
     useGSAP(() => {
-        gsap
-            .from(mainscreen_ref.current, {
+        const timeline = gsap.timeline();
+        timeline
+            .from(document.querySelectorAll('.image-view-div'), {
                 opacity: 0,
                 scale: 0,
                 yPercent: -50,
-                duration: 0.7
+                duration: 0.3,
+                stagger: 0.3
             })
     }, []);
 
@@ -29,7 +29,6 @@ const MainScreen = (props : Props) => {
         <div
             className="main-screen"
             style={{margin : props.margin}}
-            ref={mainscreen_ref}
         >
             {images_buffer.map((value, index) => (
                 <ImagesRow
