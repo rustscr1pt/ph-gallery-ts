@@ -3,6 +3,7 @@ import React, {useRef} from "react";
 import ArrayButton from "../../components/ArrayButton/ArrayButton";
 import {gsap} from "gsap";
 import {useGSAP} from "@gsap/react";
+import {useAppSelector} from "../../react-redux/hooks";
 
 interface Props extends React.PropsWithChildren {
     background_image : string
@@ -28,7 +29,7 @@ const PanoramicImage = (props : Props) => {
                 opacity: 0
             })
 
-    }, [])
+    }, [useAppSelector((state) => state.image_storage.selected_image)])
 
     return <div
         ref={div_ref}

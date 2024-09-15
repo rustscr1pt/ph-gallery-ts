@@ -19,9 +19,11 @@ export const image_storage = createSlice({
         selected_image : "/images/pres1.jpg"
     },
     reducers : {
+
         changeSelectedImage(state, action : PayloadAction<string> ) {
             state.selected_image = action.payload
         },
+
         goToTheNextImage(state){
             const currentIndex : number = state.value.indexOf(state.selected_image);
             if (currentIndex === -1) {
@@ -30,6 +32,20 @@ export const image_storage = createSlice({
             const nextIndex : number = currentIndex + 1;
             if (nextIndex < state.value.length) {
                 state.selected_image = state.value[nextIndex];
+            }
+            else {
+                state.selected_image = "/images/pres1.jpg"
+            }
+        },
+
+        goToThePreviousImage(state) {
+            const currentIndex : number = state.value.indexOf(state.selected_image);
+            if (currentIndex === -1) {
+                state.selected_image = "/images/pres1.jpg"
+            }
+            const previousIndex : number = currentIndex - 1;
+            if (previousIndex >= 0) {
+                state.selected_image = state.value[previousIndex];
             }
             else {
                 state.selected_image = "/images/pres1.jpg"
