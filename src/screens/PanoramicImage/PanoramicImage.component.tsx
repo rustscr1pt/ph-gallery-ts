@@ -3,13 +3,22 @@ import React, {useRef} from "react";
 import ArrayButton from "../../components/ArrayButton/ArrayButton";
 import {gsap} from "gsap";
 import {useGSAP} from "@gsap/react";
-import {useAppSelector} from "../../react-redux/hooks";
+import {useAppDispatch, useAppSelector} from "../../react-redux/hooks";
+import {screen_type} from "../../react-redux/bases/screen_type/screen_type";
 
 interface Props extends React.PropsWithChildren {
     background_image : string
 }
 
 const PanoramicImage = (props : Props) => {
+
+    const dispatch = useAppDispatch();
+
+    const handleClick = (event : React.MouseEvent<HTMLDivElement>) => {
+        if (event.detail === 2) {
+            dispatch(screen_type.actions.changeScreenType())
+        }
+    }
 
     gsap.registerPlugin(useGSAP);
 
@@ -36,6 +45,7 @@ const PanoramicImage = (props : Props) => {
         style={{
             backgroundImage : `url("${props.background_image}")`
         }}
+        onClick={handleClick}
         className="panoramic-image">
         <ArrayButton
             grid_columns={"1 / 2"}
