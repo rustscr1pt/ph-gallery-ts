@@ -31,11 +31,12 @@ const PanoramicImage = (props : Props) => {
         timeline
             .from(div_ref.current, {
                 yPercent : -30,
-                opacity : 0,
+                opacity : 0
             })
             .from([left_img_ref.current, right_img_ref.current], {
                 yPercent : -50,
-                opacity: 0
+                opacity: 0,
+                duration: 0.2
             })
 
     }, [useAppSelector((state) => state.image_storage.selected_image)])

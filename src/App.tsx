@@ -5,7 +5,7 @@ import PanoramicScreenComponent from "./screens/PanoramicScreen/PanoramicScreen.
 import MainScreenComponent from "./screens/MainScreen/MainScreen.component";
 
 function App() {
-  let screen_type : ScreenType = useAppSelector((state) => state.screen_type.value);
+  const screen_type : ScreenType = useAppSelector((state) => state.screen_type.value);
 
   return <div className="app-styler">
     {
