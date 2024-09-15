@@ -1,5 +1,7 @@
 import React, {RefObject} from "react";
 import './ArrayButton.style.sass';
+import {useAppDispatch} from "../../react-redux/hooks";
+import {image_storage} from "../../react-redux/bases/image_storage/image_storage";
 
 interface Props extends React.PropsWithChildren {
     grid_columns : string,
@@ -11,13 +13,14 @@ interface Props extends React.PropsWithChildren {
 
 
 const ArrayButton = (props : Props) => {
+    const dispatch = useAppDispatch();
+
     return <div
         style={
             {
                 gridColumn: props.grid_columns,
                 gridRow: props.grid_rows,
-                width: props.width,
-                cursor: "pointer"
+                width: props.width
             }
         }
         className="array-button-div"
@@ -26,7 +29,13 @@ const ArrayButton = (props : Props) => {
             ref={props.reference}
             style={{
                 width: "50%",
+                cursor: "pointer"
             }}
+            onClick={
+                () => {
+                    dispatch(image_storage.actions.goToTheNextImage())
+                }
+            }
             src={props.source_image}>
         </img>
     </div>
