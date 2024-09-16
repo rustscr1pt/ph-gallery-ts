@@ -3,8 +3,7 @@ import ImagesRow from "../ImagesRow/ImagesRow.component";
 import React from "react";
 import {useAppSelector} from "../../react-redux/hooks";
 import imagesForRows from "./ImagesForRows.function";
-import {useGSAP} from "@gsap/react";
-import {gsap} from "gsap";
+import {MainScreenGSAPAnimation} from "./MainScreenGSAP.animation";
 
 interface Props extends React.PropsWithChildren {
     margin : string
@@ -13,17 +12,7 @@ interface Props extends React.PropsWithChildren {
 const MainScreen = (props : Props) => {
     let images_buffer : string[][] = imagesForRows(useAppSelector((state) => state.image_storage.value));
 
-    useGSAP(() => {
-        const timeline = gsap.timeline();
-        timeline
-            .from(document.querySelectorAll('.image-view-div'), {
-                opacity: 0,
-                scale: 0,
-                yPercent: -50,
-                duration: 0.3,
-                stagger: 0.3
-            })
-    }, []);
+    MainScreenGSAPAnimation();
 
     return (
         <div
