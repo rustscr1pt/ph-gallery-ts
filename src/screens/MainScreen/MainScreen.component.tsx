@@ -22,6 +22,7 @@ const MainScreen = (props : Props) => {
             {images_buffer.map((value, index) => (
                 <ImagesRow
                     row_width={"100%"}
+                    key={index}
                     margin={index === 0 ? "0% 0 0 0" : "5% 0 0 0"}
                     images_buffer={value}
                 />

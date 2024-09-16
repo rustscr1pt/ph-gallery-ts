@@ -15,8 +15,12 @@ const ImagesRow = (props : Props) => {
             className="images-row"
         >
             {
-                props.images_buffer.map((value) => (
-                    <ImageViewComponent width={"20%"} image_source={value}/>
+                props.images_buffer.map((value, index) => (
+                    <ImageViewComponent
+                        key={index}
+                        width={"20%"}
+                        image_source={value}
+                    />
                     )
                 )
             }
