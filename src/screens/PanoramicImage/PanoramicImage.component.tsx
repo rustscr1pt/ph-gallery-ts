@@ -1,10 +1,9 @@
 import './PanoramicImage.style.sass';
-import React, {useRef} from "react";
+import React from "react";
 import ArrayButton from "../../components/ArrayButton/ArrayButton";
-import {gsap} from "gsap";
-import {useGSAP} from "@gsap/react";
-import {useAppDispatch, useAppSelector} from "../../react-redux/hooks";
+import {useAppDispatch} from "../../react-redux/hooks";
 import {screen_type} from "../../react-redux/bases/screen_type/screen_type";
+import {usePanoramicImageGSAPAnimation} from "./usePanoramicImageGSAP.animation";
 
 interface Props extends React.PropsWithChildren {
     background_image : string
@@ -20,26 +19,11 @@ const PanoramicImage = (props : Props) => {
         }
     }
 
-    gsap.registerPlugin(useGSAP);
-
-    const div_ref = useRef<HTMLDivElement>(null);
-    const left_img_ref = useRef<HTMLImageElement>(null);
-    const right_img_ref = useRef<HTMLImageElement>(null);
-
-    useGSAP(() => {
-        const timeline = gsap.timeline();
-        timeline
-            .from(div_ref.current, {
-                yPercent : -30,
-                opacity : 0
-            })
-            .from([left_img_ref.current, right_img_ref.current], {
-                yPercent : -50,
-                opacity: 0,
-                duration: 0.2
-            })
-
-    }, [useAppSelector((state) => state.image_storage.selected_image)])
+    const {
+            div_ref,
+            left_img_ref,
+            right_img_ref
+    } = usePanoramicImageGSAPAnimation()
 
     return <div
         ref={div_ref}
