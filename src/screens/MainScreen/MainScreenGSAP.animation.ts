@@ -1,10 +1,11 @@
 import {useGSAP} from "@gsap/react";
 import {gsap} from "gsap";
+import {useAppSelector} from "../../react-redux/hooks";
 
 export const MainScreenGSAPAnimation = () => {
+    const target = useAppSelector((state) => state.image_storage.value);
     useGSAP(() => {
-        const timeline = gsap.timeline();
-        timeline
+        gsap
             .from(document.querySelectorAll('.image-view-div'), {
                 opacity: 0,
                 scale: 0,
@@ -12,5 +13,5 @@ export const MainScreenGSAPAnimation = () => {
                 duration: 0.3,
                 stagger: 0.3
             })
-    }, []);
+    }, [target.length]);
 }
