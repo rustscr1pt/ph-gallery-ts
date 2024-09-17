@@ -11,12 +11,18 @@ interface Props extends React.PropsWithChildren {
 
 const ImageView = (props : Props) => {
     const dispatch = useAppDispatch();
-    return <div className="image-view-div" style={{width : props.width}}>
-        <img className='image-view-img' src={props.image_source} onClick={() =>
-        {
-            dispatch(image_storage.actions.changeSelectedImage(props.image_source))
-            dispatch(screen_type.actions.changeScreenType())
-        }
+    return <div
+        className="image-view-div"
+        style={{width : props.width}}
+    >
+        <img
+            className='image-view-img'
+            src={props.image_source}
+            onClick={() =>
+            {
+                dispatch(image_storage.actions.changeSelectedImage(props.image_source))
+                dispatch(screen_type.actions.changeScreenType())
+            }
         }
         />
     </div>
