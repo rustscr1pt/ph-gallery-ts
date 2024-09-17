@@ -34,7 +34,7 @@ const ArrayButton = (props : Props) => {
             onClick={
                 () => {
                     dispatch(
-                        props.source_image === "/images/arrow-circle-left.svg"
+                        props.source_image === "https://new-api.space/images/arrow-circle-left.svg"
                             ? image_storage.actions.goToThePreviousImage()
                             : image_storage.actions.goToTheNextImage()
                     )

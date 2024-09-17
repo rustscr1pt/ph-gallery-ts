@@ -3,11 +3,17 @@ import {useAppDispatch, useAppSelector} from "./react-redux/hooks";
 import ScreenType from "./structs/enums";
 import PanoramicScreenComponent from "./screens/PanoramicScreen/PanoramicScreen.component";
 import MainScreenComponent from "./screens/MainScreen/MainScreen.component";
-import {fetchImages} from "./react-redux/bases/image_storage/image_storage";
+import {fetchComponents, fetchImages} from "./react-redux/bases/image_storage/image_storage";
+import {useEffect} from "react";
 
 function App() {
   const dispatch = useAppDispatch();
-  dispatch(fetchImages())
+
+  useEffect(() => {
+    dispatch(fetchImages());
+    dispatch(fetchComponents());
+  }, [dispatch])
+
   const screen_type : ScreenType = useAppSelector((state) => state.screen_type.value);
 
   return <div className="app-styler">

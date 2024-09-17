@@ -5,11 +5,13 @@ import axios from "axios";
 interface ImageStorageState {
     value : string[],
     selected_image : string,
+    components : string[]
 }
 
 const initialState : ImageStorageState = {
     value : [],
-    selected_image : ""
+    selected_image : "",
+    components : []
 }
 
 export const image_storage = createSlice({
@@ -54,6 +56,9 @@ export const image_storage = createSlice({
             .addCase(fetchImages.fulfilled, (state, action : PayloadAction<string[]>) => {
                 state.value = action.payload
             })
+            .addCase(fetchComponents.fulfilled, (state, action : PayloadAction<string[]>) => {
+                state.components = action.payload
+            })
     }
 })
 
@@ -62,7 +67,15 @@ export const fetchImages = createAsyncThunk(
     async () => {
         const response = await axios
             .get('https://new-api.space/image-plugin/extract_images/');
-        console.log(response.data.extracted);
+        return response.data.extracted as string[]
+    }
+)
+
+export const fetchComponents = createAsyncThunk(
+    'image_storage/fetchComponents',
+    async () => {
+        const response = await axios
+            .get('http://new-api.space/image-plugin/extract_buttons/');
         return response.data.extracted as string[]
     }
 )
