@@ -26,28 +26,28 @@ export const image_storage = createSlice({
         goToTheNextImage(state){
             const currentIndex : number = state.value.indexOf(state.selected_image);
             if (currentIndex === -1) {
-                state.selected_image = "/images/pres1.jpg"
+                state.selected_image = ""
             }
             const nextIndex : number = currentIndex + 1;
             if (nextIndex < state.value.length) {
                 state.selected_image = state.value[nextIndex];
             }
             else {
-                state.selected_image = "/images/pres1.jpg"
+                state.selected_image = state.value[0]
             }
         },
 
         goToThePreviousImage(state) {
             const currentIndex : number = state.value.indexOf(state.selected_image);
             if (currentIndex === -1) {
-                state.selected_image = "/images/pres1.jpg"
+                state.selected_image = ""
             }
             const previousIndex : number = currentIndex - 1;
             if (previousIndex >= 0) {
                 state.selected_image = state.value[previousIndex];
             }
             else {
-                state.selected_image = "/images/pres1.jpg"
+                state.selected_image = state.value[state.value.length - 1]
             }
         }
     },
