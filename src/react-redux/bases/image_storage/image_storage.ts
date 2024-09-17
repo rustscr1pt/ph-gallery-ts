@@ -75,7 +75,7 @@ export const fetchComponents = createAsyncThunk(
     'image_storage/fetchComponents',
     async () => {
         const response = await axios
-            .get('http://new-api.space/image-plugin/extract_buttons/');
+            .get('https://new-api.space/image-plugin/extract_buttons/');
         return response.data.extracted as string[]
     }
 )
