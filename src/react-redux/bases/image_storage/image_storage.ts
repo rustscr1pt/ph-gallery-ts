@@ -1,23 +1,20 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import type {RootState} from "../../mainStorage";
+import axios from "axios";
+
+interface ImageStorageState {
+    value : string[],
+    selected_image : string,
+}
+
+const initialState : ImageStorageState = {
+    value : [],
+    selected_image : ""
+}
 
 export const image_storage = createSlice({
     name : "image_storage",
-    initialState : {
-        value : [
-            "/images/pres1.jpg",
-            "/images/pres2.jpg",
-            "/images/pres3.jpg",
-            "/images/pres4.jpg",
-            "/images/pres5.jpg",
-            "/images/pres6.jpg",
-            "/images/pres7.jpg",
-            "/images/pres8.jpg",
-            "/images/pres9.jpg",
-            "/images/pres10.jpg"
-        ],
-        selected_image : "/images/pres1.jpg"
-    },
+    initialState,
     reducers : {
 
         changeSelectedImage(state, action : PayloadAction<string> ) {
@@ -51,8 +48,24 @@ export const image_storage = createSlice({
                 state.selected_image = "/images/pres1.jpg"
             }
         }
+    },
+    extraReducers : (builder) => {
+        builder
+            .addCase(fetchImages.fulfilled, (state, action : PayloadAction<string[]>) => {
+                state.value = action.payload
+            })
     }
 })
+
+export const fetchImages = createAsyncThunk(
+    'image_storage/fetchImages',
+    async () => {
+        const response = await axios
+            .get('https://new-api.space/image-plugin/extract_images/');
+        console.log(response.data.extracted);
+        return response.data.extracted as string[]
+    }
+)
 
 export const readImageStorage = (state : RootState) => {
     return state.image_storage.value;
