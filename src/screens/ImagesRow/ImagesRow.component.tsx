@@ -18,7 +18,7 @@ const ImagesRow = (props : Props) => {
                 props.images_buffer.map((value, index) => (
                     <ImageViewComponent
                         key={index}
-                        width={"20%"}
+                        width={"30%"}
                         image_source={value}
                     />
                     )
