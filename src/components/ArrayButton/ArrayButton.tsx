@@ -4,8 +4,6 @@ import {useAppDispatch} from "../../react-redux/hooks";
 import {image_storage} from "../../react-redux/bases/image_storage/image_storage";
 
 interface Props extends React.PropsWithChildren {
-    grid_columns : string,
-    grid_rows : string
     width : string,
     source_image : string,
     reference : RefObject<HTMLImageElement>
@@ -18,8 +16,6 @@ const ArrayButton = (props : Props) => {
     return <div
         style={
             {
-                gridColumn: props.grid_columns,
-                gridRow: props.grid_rows,
                 width: props.width
             }
         }

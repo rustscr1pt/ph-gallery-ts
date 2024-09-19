@@ -31,18 +31,14 @@ const PanoramicImage = (props : Props) => {
         ref={div_ref}
         onClick={handleClick}
         className="panoramic-image">
-        <ImageSquarePresentationComponent background_image={props.background_image}/>
         <ArrayButton
-            grid_columns={"1 / 3"}
-            grid_rows={"7 / 10"}
-            width={"100%"}
+            width={"50%"}
             source_image={FindComponentFunction(ScreenSideButton.Left) || "Null"}
             reference={left_img_ref}
         />
+        <ImageSquarePresentationComponent background_image={props.background_image}/>
         <ArrayButton
-            grid_columns={"10 / 12"}
-            grid_rows={"7 / 10"}
-            width={"100%"}
+            width={"50%"}
             source_image={FindComponentFunction(ScreenSideButton.Right) || "Null"}
             reference={right_img_ref}
         />

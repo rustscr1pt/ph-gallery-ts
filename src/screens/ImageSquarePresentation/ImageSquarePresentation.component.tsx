@@ -9,7 +9,7 @@ const ImageSquarePresentationComponent = (props : Props) => {
     return <div
         className='image-square-presentation'
     >
-        <img className='panoramic-img-hash' src={props.background_image}/></div>
+        <img className='square-image' src={props.background_image}/></div>
 }
 
 export default ImageSquarePresentationComponent;
