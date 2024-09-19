@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import type {RootState} from "../../mainStorage";
 import axios from "axios";
+import main_for_fetching from "../../../url_collection";
 
 interface ImageStorageState {
     value : string[],
@@ -66,7 +67,7 @@ export const fetchImages = createAsyncThunk(
     'image_storage/fetchImages',
     async () => {
         const response = await axios
-            .get('https://new-api.space/image-plugin/extract_images/');
+            .get(`${main_for_fetching}/image-plugin/extract_images/`);
         return response.data.extracted as string[]
     }
 )
@@ -75,7 +76,7 @@ export const fetchComponents = createAsyncThunk(
     'image_storage/fetchComponents',
     async () => {
         const response = await axios
-            .get('https://new-api.space/image-plugin/extract_buttons/');
+            .get(`${main_for_fetching}/image-plugin/extract_buttons/`);
         return response.data.extracted as string[]
     }
 )
