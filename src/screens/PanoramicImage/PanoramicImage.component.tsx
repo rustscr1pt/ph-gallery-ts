@@ -1,49 +1,20 @@
 import './PanoramicImage.style.sass';
-import React, {useRef, useState} from "react";
+import React, {useState} from "react";
 import ArrayButton from "../../components/ArrayButton/ArrayButton";
-import {useAppDispatch} from "../../react-redux/hooks";
-import {screen_type} from "../../react-redux/bases/screen_type/screen_type";
 import {usePanoramicImageGSAPAnimation} from "./usePanoramicImageGSAP.animation";
 import {FindComponentFunction, ScreenSideButton} from "./findComponent.function";
 import ImageSquarePresentationComponent from "../ImageSquarePresentation/ImageSquarePresentation.component";
-import {useGSAP} from "@gsap/react";
-import {gsap} from "gsap";
+import {useExitPanoramicImageGSAPAnimation} from "./useExitPanoramicImageGSAP.animation";
 
 interface Props extends React.PropsWithChildren {
     background_image : string
 }
 
 const PanoramicImage = (props : Props) => {
-    gsap.registerPlugin(useGSAP);
-    const dispatch = useAppDispatch();
-
+    // State for triggering the exit animation
     const [isAnimatedExit, setIsAnimatedExit] = useState(false);
-    const exitImgRef = useRef<HTMLImageElement>(null);
 
-
-    useGSAP(() => {
-        if (isAnimatedExit) {
-            const timeline = gsap.timeline({
-                onComplete : () => {
-                    dispatch(screen_type.actions.changeScreenType())
-                }});
-            timeline
-                .to(exitImgRef.current, {
-                    yPercent: 30,
-                    opacity : 0
-                })
-                .to(left_img_ref.current, {
-                    xPercent: -50,
-                    opacity : 0,
-                    duration: 0.4
-                }, "marker")
-                .to(right_img_ref.current, {
-                    xPercent: 50,
-                    opacity : 0,
-                    duration: 0.4
-                }, "marker")
-        }
-    }, [isAnimatedExit]);
+    // When image is double-clicked - it triggers isAnimatedExit and animation starts playing
     const handleClick = (event : React.MouseEvent<HTMLDivElement>) => {
         if (event.detail === 2) {
             console.log("true")
@@ -51,11 +22,15 @@ const PanoramicImage = (props : Props) => {
         }
     }
 
+    // Get first pack of refs for playing animation when component mounts
     const {
             div_ref,
             left_img_ref,
             right_img_ref
     } = usePanoramicImageGSAPAnimation()
+
+    // Get final ref for exit animation.
+    const exitImgRef = useExitPanoramicImageGSAPAnimation(isAnimatedExit, left_img_ref, right_img_ref);
 
     return <div
         ref={div_ref}
