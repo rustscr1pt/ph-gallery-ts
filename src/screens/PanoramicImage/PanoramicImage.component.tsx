@@ -19,43 +19,26 @@ const PanoramicImage = (props : Props) => {
 
     const [isAnimatedExit, setIsAnimatedExit] = useState(false);
     const exitImgRef = useRef<HTMLImageElement>(null);
-    const exitImgLeftArrow = useRef<HTMLImageElement>(null);
-    const exitImgRightArrow = useRef<HTMLImageElement>(null);
 
-    // useGSAP(() => {
-    //     if (isAnimatedExit && exitImgRef.current && exitImgLeftArrow.current && exitImgRightArrow.current) {
-    //         const timeline = gsap.timeline({
-    //             onComplete : () => {
-    //                 dispatch(screen_type.actions.changeScreenType())
-    //             }
-    //         });
-    //         timeline
-    //             .to(exitImgRef.current, {
-    //                 yPercent: 30,
-    //                 opacity : 0,
-    //             })
-    //             .to([exitImgLeftArrow.current, exitImgRightArrow.current], {
-    //                 yPercent : 50,
-    //                 opacity: 0,
-    //                 duration: 0.2
-    //             })
-    //         timeline.play()
-    //     }
-    // });
 
     useGSAP(() => {
         if (isAnimatedExit) {
-            gsap
+            const timeline = gsap.timeline({
+                onComplete : () => {
+                    dispatch(screen_type.actions.changeScreenType())
+                }});
+            timeline
                 .to(exitImgRef.current, {
                     yPercent: 30,
+                    opacity : 0
+                })
+                .to([left_img_ref.current, right_img_ref.current], {
+                    yPercent: 50,
                     opacity : 0,
-                    onComplete : () => {
-                        dispatch(screen_type.actions.changeScreenType())
-                    }
+                    duration: 0.2
                 })
         }
     }, [isAnimatedExit]);
-//
     const handleClick = (event : React.MouseEvent<HTMLDivElement>) => {
         if (event.detail === 2) {
             console.log("true")
@@ -77,7 +60,6 @@ const PanoramicImage = (props : Props) => {
             width={"50%"}
             source_image={FindComponentFunction(ScreenSideButton.Left) || "Null"}
             reference={left_img_ref}
-            exitReference={exitImgLeftArrow}
         />
         <ImageSquarePresentationComponent
             background_image={props.background_image}
@@ -87,7 +69,6 @@ const PanoramicImage = (props : Props) => {
             width={"50%"}
             source_image={FindComponentFunction(ScreenSideButton.Right) || "Null"}
             reference={right_img_ref}
-            exitReference={exitImgRightArrow}
         />
     </div>
 }
