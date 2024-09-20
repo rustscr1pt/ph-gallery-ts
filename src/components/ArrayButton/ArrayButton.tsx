@@ -7,6 +7,7 @@ interface Props extends React.PropsWithChildren {
     width : string,
     source_image : string,
     reference : RefObject<HTMLImageElement>
+    exitReference : RefObject<HTMLImageElement>
 }
 
 
