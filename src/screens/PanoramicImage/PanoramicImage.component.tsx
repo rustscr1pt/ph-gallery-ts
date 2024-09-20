@@ -55,7 +55,7 @@ const PanoramicImage = (props : Props) => {
                 })
         }
     }, [isAnimatedExit]);
-
+//
     const handleClick = (event : React.MouseEvent<HTMLDivElement>) => {
         if (event.detail === 2) {
             console.log("true")
