@@ -32,11 +32,16 @@ const PanoramicImage = (props : Props) => {
                     yPercent: 30,
                     opacity : 0
                 })
-                .to([left_img_ref.current, right_img_ref.current], {
-                    yPercent: 50,
+                .to(left_img_ref.current, {
+                    xPercent: -50,
                     opacity : 0,
-                    duration: 0.2
-                })
+                    duration: 0.4
+                }, "marker")
+                .to(right_img_ref.current, {
+                    xPercent: 50,
+                    opacity : 0,
+                    duration: 0.4
+                }, "marker")
         }
     }, [isAnimatedExit]);
     const handleClick = (event : React.MouseEvent<HTMLDivElement>) => {
