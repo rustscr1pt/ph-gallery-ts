@@ -25,7 +25,8 @@ const ArrayButton = (props : Props) => {
             ref={props.reference}
             style={{
                 width: "50%",
-                cursor: "pointer"
+                cursor: "pointer",
+                outline: "none"
             }}
             onClick={
                 () => {

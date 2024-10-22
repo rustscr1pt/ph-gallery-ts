@@ -14,7 +14,8 @@ const ImageSquarePresentationComponent = (props : Props) => {
             className='square-image'
             src={props.background_image}
             ref={props.reference}
-        /></div>
+        />
+    </div>
 }
 
 export default ImageSquarePresentationComponent;
