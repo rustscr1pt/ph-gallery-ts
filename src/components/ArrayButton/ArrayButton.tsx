@@ -14,11 +14,7 @@ const ArrayButton = (props : Props) => {
     const dispatch = useAppDispatch();
 
     return <div
-        style={
-            {
-                width: props.width
-            }
-        }
+        style={{width: props.width}}
         className="array-button-div"
     >
         <img
@@ -28,14 +24,12 @@ const ArrayButton = (props : Props) => {
                 cursor: "pointer",
                 outline: "none"
             }}
-            onClick={
-                () => {
-                    dispatch(
+            onClick={() => {
+                dispatch(
                         props.source_image === "https://new-api.space/images/arrow-circle-left.svg"
                             ? image_storage.actions.goToThePreviousImage()
                             : image_storage.actions.goToTheNextImage()
-                    )
-                }
+                )}
             }
             src={props.source_image}>
         </img>
