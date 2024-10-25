@@ -11,7 +11,10 @@ interface Props extends React.PropsWithChildren {
 const ImagesRow = (props : Props) => {
     return (
         <div
-            style={{width : props.row_width, margin : props.margin}}
+            style={{
+                width : props.row_width,
+                margin : props.margin
+            }}
             className="images-row"
         >
             {
