@@ -18,7 +18,7 @@ const ImageView = (props : Props) => {
         <img
             className='image-view-img'
             src={props.image_source}
-            alt="Boxed main image in ImageView component"
+            alt="A single image in a row in the main screen"
             onClick={() =>
             {
                 dispatch(image_storage.actions.changeSelectedImage(props.image_source))
