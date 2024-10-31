@@ -14,6 +14,7 @@ const ImageSquarePresentationComponent = (props : Props) => {
             className='square-image'
             src={props.background_image}
             ref={props.reference}
+            alt="Presentation of the choosen image in the panoramic screen"
         />
     </div>
 }
