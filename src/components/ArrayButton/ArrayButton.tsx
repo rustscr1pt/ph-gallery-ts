@@ -24,6 +24,7 @@ const ArrayButton = (props : Props) => {
                 cursor: "pointer",
                 outline: "none"
             }}
+            alt="An array button for navigation between images"
             onClick={() => {
                 dispatch(
                         props.source_image === "https://new-api.space/images/arrow-circle-left.svg"
